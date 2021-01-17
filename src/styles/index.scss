@@ -1,1 +1,39 @@
-@import "@89netram/snygg/src/index";
+@import "@89netram/snygg/src/vars";
+@import "@89netram/snygg/src/colors/colorStyles";
+@import "@89netram/snygg/src/global";
+
+app {
+	width: 100%;
+	min-height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	header {
+		text-align: center;
+
+		h1 {
+			margin-bottom: 0px;
+		}
+		p {
+			margin-top: 0px;
+		}
+	}
+
+	main {
+		display: flex;
+		align-items: flex-start;
+
+		aside {
+			padding: $distance/2 $distance;
+			background-color: var(--level1-color);
+			box-shadow: 0px 0px $distance/2 var(--shadow);
+			border-radius: $rounding;
+		}
+		canvas {
+			align-self: center;
+		}
+	}
+}
