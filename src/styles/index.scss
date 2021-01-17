@@ -61,6 +61,15 @@ label > .toggle {
 	margin-left: $distance / 2;
 }
 
+.separate {
+	display: flex;
+	justify-content: space-between;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
 @media (min-width: $bigScreen) {
 	app {
 		main {

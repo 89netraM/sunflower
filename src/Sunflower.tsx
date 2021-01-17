@@ -12,6 +12,7 @@ interface SunflowerState {
 }
 
 export class Sunflower extends Component<{}, SunflowerState> {
+	private static readonly goldenRatio: number = 1.618;
 	private static readonly dotRadius: number = 2.5;
 	private static readonly fibMap: { [n: number]: number } = {
 		89: 34,
@@ -50,7 +51,7 @@ export class Sunflower extends Component<{}, SunflowerState> {
 
 		this.state = {
 			numPoints: 1000,
-			turnFraction: 1.618,
+			turnFraction: Sunflower.goldenRatio,
 			pow: 0.5,
 			shouldHighlight: false,
 			highlight: 34,
@@ -138,7 +139,15 @@ export class Sunflower extends Component<{}, SunflowerState> {
 						suggestedMax={2}
 						onChange={v => this.setState({ turnFraction: v })}
 					>
-						Turn Fraction:
+						<span className="separate">
+							<span>Turn Fraction:</span>
+							<span
+								className="clickable"
+								onClick={() => this.setState({ turnFraction: Sunflower.goldenRatio })}
+							>
+								↩
+							</span>
+						</span>
 					</NumberInput>
 					<NumberInput
 						value={this.state.pow}
