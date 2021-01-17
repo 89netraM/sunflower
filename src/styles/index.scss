@@ -3,6 +3,8 @@
 @import "@89netram/snygg/src/global";
 @import "@89netram/snygg/src/text-field/text-field";
 @import "@89netram/snygg/src/range/range";
+@import "@89netram/snygg/src/toggle/toggle";
+@import "@89netram/snygg/src/hr/hr";
 
 app {
 	width: 100%;
@@ -52,6 +54,10 @@ app {
 			margin-left: $distance;
 		}
 	}
+}
+
+label > .toggle {
+	margin-left: $distance / 2;
 }
 
 @media (min-width: $bigScreen) {
