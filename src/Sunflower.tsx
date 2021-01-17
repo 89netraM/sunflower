@@ -14,15 +14,6 @@ interface SunflowerState {
 export class Sunflower extends Component<{}, SunflowerState> {
 	private static readonly goldenRatio: number = 1.618;
 	private static readonly dotRadius: number = 2.5;
-	private static readonly fibMap: { [n: number]: number } = {
-		89: 34,
-		55: 21,
-		34: 13,
-		21: 8,
-		13: 5,
-		8: 3,
-		5: 2
-	};
 
 	private readonly canvas: RefObject<HTMLCanvasElement> = createRef();
 	private readonly canvasReplacement: RefObject<HTMLDivElement> = createRef();
@@ -41,9 +32,7 @@ export class Sunflower extends Component<{}, SunflowerState> {
 	}
 
 	private get stepSize(): number {
-		return this.state.highlight in Sunflower.fibMap ?
-			Sunflower.fibMap[this.state.highlight] :
-			1;
+		return Math.round(this.state.highlight / this.state.turnFraction / this.state.turnFraction);
 	}
 
 	public constructor(properties: {}) {
