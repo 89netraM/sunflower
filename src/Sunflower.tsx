@@ -9,13 +9,16 @@ interface SunflowerState {
 }
 
 export class Sunflower extends Component<{}, SunflowerState> {
-	private static readonly size: number = 500;
 	private static readonly dotRadius: number = 2.5;
 
 	private readonly canvas: RefObject<HTMLCanvasElement> = createRef();
 	private readonly canvasReplacement: RefObject<HTMLDivElement> = createRef();
 	private ctx: CanvasRenderingContext2D;
 
+	private get size(): number {
+		const rect = this.canvasReplacement.current.getBoundingClientRect();
+		return rect.width;
+	}
 	private get offset(): { x: number, y: number } {
 		const rect = this.canvasReplacement.current.getBoundingClientRect();
 		return {
@@ -44,8 +47,9 @@ export class Sunflower extends Component<{}, SunflowerState> {
 	}
 
 	private updateSize(): void {
-		this.canvas.current.width = window.innerWidth;
-		this.canvas.current.height = window.innerHeight;
+		const rect = window.document.body.getBoundingClientRect();
+		this.canvas.current.width = rect.width;
+		this.canvas.current.height = rect.height;
 
 		this.drawSunflower();
 	}
@@ -68,8 +72,8 @@ export class Sunflower extends Component<{}, SunflowerState> {
 		}
 	}
 	private drawPoint(x: number, y: number): void {
-		const canvasX = this.offset.x + (x + 1) * Sunflower.size / 2 - Sunflower.dotRadius / 2;
-		const canvasY = this.offset.y + (y + 1) * Sunflower.size / 2 - Sunflower.dotRadius / 2;
+		const canvasX = this.offset.x + (x + 1) * this.size / 2 - Sunflower.dotRadius / 2;
+		const canvasY = this.offset.y + (y + 1) * this.size / 2 - Sunflower.dotRadius / 2;
 
 		this.ctx.fillStyle = getAccentColor();
 		this.ctx.beginPath();

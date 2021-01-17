@@ -26,7 +26,8 @@ app {
 
 	main {
 		display: flex;
-		align-items: flex-start;
+		flex-direction: column;
+		align-items: center;
 
 		aside {
 			padding: $distance/2 $distance;
@@ -43,9 +44,20 @@ app {
 			bottom: 0px;
 		}
 		.canvas-replacement {
-			width: 500px;
-			height: 500px;
+			width: 100vw;
+			height: 100vw;
+			max-width: 500px;
+			max-height: 500px;
 			margin-left: $distance;
+		}
+	}
+}
+
+@media (min-width: $bigScreen) {
+	app {
+		main {
+			flex-direction: row;
+			align-items: flex-start;
 		}
 	}
 }
