@@ -13,7 +13,16 @@ export class Sunflower extends Component<{}, SunflowerState> {
 	private static readonly dotRadius: number = 2.5;
 
 	private readonly canvas: RefObject<HTMLCanvasElement> = createRef();
+	private readonly canvasReplacement: RefObject<HTMLDivElement> = createRef();
 	private ctx: CanvasRenderingContext2D;
+
+	private get offset(): { x: number, y: number } {
+		const rect = this.canvasReplacement.current.getBoundingClientRect();
+		return {
+			x: rect.left,
+			y: rect.top
+		};
+	}
 
 	public constructor(properties: {}) {
 		super(properties);
@@ -27,14 +36,26 @@ export class Sunflower extends Component<{}, SunflowerState> {
 
 	public componentDidMount(): void {
 		this.ctx = this.canvas.current.getContext("2d");
+		window.addEventListener("resize", this.updateSize.bind(this), true);
+		this.updateSize();
+	}
+	public componentWillUnmount(): void {
+		window.removeEventListener("resize", this.updateSize.bind(this));
+	}
+
+	private updateSize(): void {
+		this.canvas.current.width = window.innerWidth;
+		this.canvas.current.height = window.innerHeight;
+
 		this.drawSunflower();
 	}
+
 	public componentDidUpdate(): void {
 		this.drawSunflower();
 	}
 
 	private drawSunflower(): void {
-		this.ctx.clearRect(0, 0, Sunflower.size, Sunflower.size);
+		this.ctx.clearRect(0, 0, this.canvas.current.width, this.canvas.current.height);
 
 		for (let i = 0; i < this.state.numPoints; i++) {
 			const dst = Math.pow(i / (this.state.numPoints - 1), this.state.pow);
@@ -47,8 +68,8 @@ export class Sunflower extends Component<{}, SunflowerState> {
 		}
 	}
 	private drawPoint(x: number, y: number): void {
-		const canvasX = (x + 1) * Sunflower.size / 2 - Sunflower.dotRadius / 2;
-		const canvasY = (y + 1) * Sunflower.size / 2 - Sunflower.dotRadius / 2;
+		const canvasX = this.offset.x + (x + 1) * Sunflower.size / 2 - Sunflower.dotRadius / 2;
+		const canvasY = this.offset.y + (y + 1) * Sunflower.size / 2 - Sunflower.dotRadius / 2;
 
 		this.ctx.fillStyle = getAccentColor();
 		this.ctx.beginPath();
@@ -90,10 +111,10 @@ export class Sunflower extends Component<{}, SunflowerState> {
 						Power:
 					</NumberInput>
 				</aside>
-				<canvas
-					ref={this.canvas}
-					width={Sunflower.size}
-					height={Sunflower.size}
+				<canvas ref={this.canvas} />
+				<div
+					ref={this.canvasReplacement}
+					className="canvas-replacement"
 				/>
 			</>
 		);
