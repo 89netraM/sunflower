@@ -96,20 +96,27 @@ export class Sunflower extends Component<{}, SunflowerState> {
 				<aside>
 					<NumberInput
 						value={this.state.numPoints}
-						min={1}
-						step={1}
+						min={0}
+						step={50}
+						suggestedMax={2000}
 						onChange={v => this.setState({ numPoints: v })}
 					>
 						Number of Points:
 					</NumberInput>
 					<NumberInput
 						value={this.state.turnFraction}
+						suggestedMin={1.5}
+						suggestedStep={0.01}
+						suggestedMax={2}
 						onChange={v => this.setState({ turnFraction: v })}
 					>
 						Turn Fraction:
 					</NumberInput>
 					<NumberInput
 						value={this.state.pow}
+						suggestedMin={-1}
+						suggestedStep={0.01}
+						suggestedMax={1}
 						onChange={v => this.setState({ pow: v })}
 					>
 						Power:

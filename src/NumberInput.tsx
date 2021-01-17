@@ -2,6 +2,9 @@ import React, { Component, ReactNode } from "react";
 
 export interface NumberInputProperties {
 	value: number,
+	suggestedMin?: number,
+	suggestedStep?: number,
+	suggestedMax?: number,
 	min?: number,
 	step?: number,
 	max?: number,
@@ -63,6 +66,14 @@ export class NumberInput extends Component<NumberInputProperties, NumberInputSta
 						max={this.props.max}
 						value={this.state.text}
 						readOnly={this.props.readOnly}
+						onChange={e => this.updateText(e.target.value)}
+						></input>
+					<input
+						type="range"
+						min={this.props.suggestedMin || this.props.min}
+						step={this.props.suggestedStep || this.props.step}
+						max={this.props.suggestedMax || this.props.max}
+						value={this.props.value}
 						onChange={e => this.updateText(e.target.value)}
 					></input>
 				</label>
