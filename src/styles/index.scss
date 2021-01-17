@@ -5,6 +5,7 @@
 @import "@89netram/snygg/src/range/range";
 @import "@89netram/snygg/src/toggle/toggle";
 @import "@89netram/snygg/src/hr/hr";
+@import "@89netram/snygg/src/button/button";
 
 app {
 	width: 100%;
@@ -39,6 +40,11 @@ app {
 			box-shadow: 0px 0px $distance/2 var(--shadow);
 			border-radius: $rounding;
 			z-index: 10;
+
+			button {
+				width: 100%;
+				margin-bottom: $distance/2;
+			}
 		}
 		canvas {
 			position: absolute;
@@ -68,6 +74,70 @@ label > .toggle {
 
 .clickable {
 	cursor: pointer;
+}
+
+.code {
+	padding: $distance * 4 0px;
+	display: flex;
+	justify-content: center;
+	font-size: 125%;
+	background-color: var(--level1-color);
+	box-shadow: 0px 0px $distance/2 var(--shadow);
+	border-radius: $rounding;
+	position: relative;
+	z-index: 10;
+
+	&[hidden] {
+		display: none;
+	}
+
+	button {
+		position: absolute;
+		top: $distance;
+		right: $distance;
+
+		border: none;
+		background: none;
+		font-size: 100%;
+		cursor: pointer;
+		outline: none;
+		transition: transform 0.1s;
+
+		&:active {
+			transform: scale(0.9);
+			transition: transform 0.05s;
+		}
+	}
+
+	.line {
+		display: block;
+		height: 1.1em;
+
+		&:not(:first-of-type) {
+			padding-left: 4ch;
+		}
+
+		> span {
+			&:not(.no-space) {
+				padding-right: 1ch;
+			}
+			&.key {
+				color: #c586c0;
+			}
+			&.var {
+				color: #9cdcfe;
+			}
+			&.num {
+				color: #b5cea8;
+			}
+			&.fun {
+				color: #dcdcaa;
+			}
+			&.comment {
+				color: #6a9955;
+			}
+		}
+	}
 }
 
 @media (min-width: $bigScreen) {

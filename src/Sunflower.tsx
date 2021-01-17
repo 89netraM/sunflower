@@ -1,8 +1,10 @@
 import React, { Component, createRef, ReactNode, RefObject } from "react";
+import { Code } from "./Code";
 import { getAccentColor, getComplimentColor } from "./colorFunctions";
 import { NumberInput } from "./NumberInput";
 
 interface SunflowerState {
+	codeVisible: boolean,
 	numPoints: number,
 	turnFraction: number,
 	pow: number,
@@ -39,6 +41,7 @@ export class Sunflower extends Component<{}, SunflowerState> {
 		super(properties);
 
 		this.state = {
+			codeVisible: false,
 			numPoints: 1000,
 			turnFraction: Sunflower.goldenRatio,
 			pow: 0.5,
@@ -147,6 +150,9 @@ export class Sunflower extends Component<{}, SunflowerState> {
 					>
 						Power:
 					</NumberInput>
+					<button onClick={() => this.setState({ codeVisible: !this.state.codeVisible })}>
+						{this.state.codeVisible ? "Hide Pseudocode" : "Show Pseudocode"}
+					</button>
 					<hr />
 					<p>
 						<label>
@@ -186,7 +192,9 @@ export class Sunflower extends Component<{}, SunflowerState> {
 				<div
 					ref={this.canvasReplacement}
 					className="canvas-replacement"
-				/>
+				>
+					<Code hidden={!this.state.codeVisible} />
+				</div>
 			</>
 		);
 	}
