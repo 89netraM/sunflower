@@ -195,6 +195,28 @@ export class Sunflower extends Component<{}, SunflowerState> {
 				>
 					<Code hidden={!this.state.codeVisible} />
 				</div>
+				<p>
+					<a
+						href="https://github.com/89netraM/sunflower"
+						target="_blank"
+					>
+						source
+					</a>
+					<span>❤</span>
+					<a
+						href="https://www.youtube.com/watch?v=bqtqltqcQhw"
+						target="_blank"
+					>
+						inspiration
+					</a>
+					<span>❤</span>
+					<a
+						href="https://stackoverflow.com/questions/9600801/evenly-distributing-n-points-on-a-sphere/44164075#44164075"
+						target="_blank"
+					>
+						further reading
+					</a>
+				</p>
 			</>
 		);
 	}

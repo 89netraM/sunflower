@@ -59,6 +59,28 @@ app {
 			max-width: 500px;
 			max-height: 500px;
 			margin-left: $distance * 2;
+
+			& + p {
+				@media (min-width: $bigScreen) {
+					position: absolute;
+					left: 50%;
+					bottom: 0px;
+					transform: translate(-50%, 0px);
+				}
+
+				a {
+					color: var(--color);
+					text-decoration: none;
+	
+					&:hover {
+						color: var(--accent);
+					}
+				}
+	
+				span {
+					margin: 0px 1ch;
+				}
+			}
 		}
 	}
 }
