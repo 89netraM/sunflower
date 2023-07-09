@@ -28,7 +28,7 @@ module.exports = {
 		new HtmlPlugin({
 			template: path.resolve(__dirname, "index.html"),
 			title: "Sunflower",
-			base: "/sunflower/"
+			base: "/"
 		}),
 		new CopyPlugin({
 			patterns: [

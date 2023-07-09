@@ -3,7 +3,7 @@
 A fun little interactive tool for playing with Fibonacci Distribution in a
 Circle.
 
-Can produce patterns like the following, and more! [Try it out now!](https://åsberg.net/sunflower/)
+Can produce patterns like the following, and more! [Try it out now!](https://sunflower.xn--sberg-lra.net/)
 
 ![A sunflower pattern produced by the tool](./static/card.png)
 
